@@ -1,0 +1,3 @@
+/* index.css — minimal, globals.css handles everything */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }

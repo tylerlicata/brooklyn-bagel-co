@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* ── Italian Flag Brand Palette ── */
+  --red-primary:    #B42D00;
+  --red-deep:       #7A1E00;
+  --red-light:      #CC3300;
+  --red-hover:      #9A2500;
+
+  --green-primary:  #1A3D2B;
+  --green-mid:      #2D5E3F;
+  --green-light:    #3A7A52;
+  --green-subtle:   rgba(26, 61, 43, 0.06);
+
+  --cream:          #FFF0E1;
+  --cream-cool:     #F0F0E1;
+  --off-white:      #F8F4EE;
+
+  --charcoal:       #1C1C1C;
+  --ink:            #2A2A2A;
+  --warm-gray:      #8A8178;
+  --divider:        #E2DAD0;
+  --divider-dark:   rgba(255,240,225,0.12);
+
+  /* ── Typography ── */
+  --font-display:   'Playfair Display', Georgia, serif;
+  --font-body:      'Montserrat', sans-serif;
+  --font-serif:     'Libre Baskerville', Georgia, serif;
+
+  /* ── Spacing ── */
+  --nav-h:          72px;
+  --section-pad:    100px;
+  --container:      1280px;
+
+  /* ── Transitions ── */
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--off-white);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--red-primary); border-radius: 3px; }
+
+/* ── Typography Scale ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  color: var(--green-primary);
+}
+
+h1 { font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; }
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 700; }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 700; }
+h4 { font-size: 1.125rem; font-weight: 700; }
+
+p {
+  font-family: var(--font-serif);
+  line-height: 1.8;
+  color: var(--warm-gray);
+  font-size: 0.9375rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { display: block; max-width: 100%; }
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* ── Utilities ── */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--red-primary);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.flag-stripe {
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--green-primary) 0%,    var(--green-primary) 33.33%,
+    var(--cream)         33.33%, var(--cream)         66.66%,
+    var(--red-primary)   66.66%, var(--red-primary)   100%
+  );
+  width: 100%;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.25s var(--ease-out);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--red-primary);
+  color: var(--cream);
+  border: 2px solid var(--red-primary);
+}
+.btn-primary:hover {
+  background: var(--red-hover);
+  border-color: var(--red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(180, 45, 0, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  border: 2px solid rgba(255,240,225,0.5);
+}
+.btn-outline:hover {
+  border-color: var(--cream);
+  background: rgba(255,240,225,0.08);
+  transform: translateY(-2px);
+}
+
+.btn-green {
+  background: var(--green-primary);
+  color: var(--cream);
+  border: 2px solid var(--green-primary);
+}
+.btn-green:hover {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26, 61, 43, 0.3);
+}
+
+/* ── Section Base ── */
+.section {
+  padding: var(--section-pad) 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  :root { --section-pad: 64px; }
+  .container { padding: 0 24px; }
+}

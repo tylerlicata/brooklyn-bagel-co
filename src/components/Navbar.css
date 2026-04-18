@@ -1,0 +1,212 @@
+/* src/components/Navbar.css */
+
+/* ── Base: always opaque on inner pages, floating on home ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  background: var(--green-primary);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+}
+
+/* Home hero: start transparent, solidify on scroll */
+.navbar--home {
+  background: transparent;
+  box-shadow: none;
+}
+.navbar--home.navbar--scrolled {
+  background: var(--green-primary);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  height: var(--nav-h);
+  gap: 8px;
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+/* Logo */
+.navbar__logo {
+  flex-shrink: 0;
+  margin-right: 16px;
+}
+.navbar__logo img {
+  height: 46px;
+  width: 46px;
+  object-fit: contain;
+  transition: transform 0.3s var(--ease-out);
+  display: block;
+}
+.navbar__logo:hover img {
+  transform: rotate(-5deg) scale(1.08);
+}
+
+/* Links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin-left: auto;
+}
+
+.navbar__link {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,240,225,0.7);
+  padding: 10px 16px;
+  position: relative;
+  transition: color 0.2s ease;
+  display: block;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: var(--red-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.navbar__link:hover { color: var(--cream); }
+.navbar__link--active { color: var(--cream); }
+
+.navbar__link:hover::after,
+.navbar__link--active::after {
+  transform: scaleX(1);
+}
+
+/* CTA */
+.navbar__cta {
+  padding: 10px 24px;
+  font-size: 0.5625rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+/* Flag stripe */
+.navbar__stripe {
+  height: 2px;
+}
+
+/* ── Hamburger ── */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  cursor: pointer;
+  margin-left: auto;
+  border: none;
+}
+.navbar__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--cream);
+  transition: all 0.3s var(--ease-out);
+  transform-origin: center;
+}
+.navbar__hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar__hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.navbar__hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mobile Drawer ── */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  height: 100vh;
+  height: 100dvh;
+  background: var(--green-primary);
+  z-index: 1100;
+  transform: translateX(100%);
+  transition: transform 0.4s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  padding: 90px 36px 48px;
+  overflow-y: auto;
+}
+.mobile-drawer--open { transform: translateX(0); }
+
+.mobile-drawer__flag {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.mobile-drawer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+.mobile-drawer__links li {
+  opacity: 0;
+  transform: translateX(16px);
+}
+.mobile-drawer--open .mobile-drawer__links li {
+  animation: slideInRight 0.35s var(--ease-out) forwards;
+}
+@keyframes slideInRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.mobile-drawer__link {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--cream);
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,240,225,0.08);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+.mobile-drawer__link:hover {
+  color: var(--red-light);
+  padding-left: 10px;
+}
+
+.mobile-drawer__cta {
+  margin-top: 36px;
+  width: 100%;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Overlay */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1099;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .navbar__links { display: none; }
+  .navbar__cta   { display: none; }
+  .navbar__hamburger { display: flex; }
+  .navbar__inner { padding: 0 24px; }
+}
